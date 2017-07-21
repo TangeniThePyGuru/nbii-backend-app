@@ -8,6 +8,8 @@ var factories = angular.module('appFactories', [])
 
     };
 
-
     return newsFactory;
-});
+}
+
+);
+

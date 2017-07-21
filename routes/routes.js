@@ -8,4 +8,22 @@ config('appRoutes', function($locationProvider, $routeProvider) {
             controller: "newsController"
     })
 
+    .
+        when('/add-events', {
+            templateUrl: "views/events/add-events.htm",
+            controller: "eventsController"
+    })
+
+    .
+        when('/add-services', {
+            templateUrl: "views/services/add-services.htm",
+            controller: "servicesController"
+    })
+
+    .
+        when('/add-adverts', {
+            templateUrl: "views/adverts/add-adverts.htm",
+            controller: "advertsController"
+    })
+
 });
