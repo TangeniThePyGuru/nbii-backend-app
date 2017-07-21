@@ -101,6 +101,22 @@
 
   <script src="angular/angular.js"></script>
   <script src="angular/angular-route.js"></script>
+  <!--firebase file-->
+  <script src="scripts/firebase.js"></script>
+<script>
+  // Initialize Firebase
+  // TODO: Replace with your project's customized code snippet
+  var config = {
+    apiKey: "<API_KEY>",
+    authDomain: "<PROJECT_ID>.firebaseapp.com",
+    databaseURL: "https://nbiiapp.firebaseio.com/",
+    storageBucket: "<BUCKET>.appspot.com",
+    messagingSenderId: "<SENDER_ID>",
+  };
+  firebase.initializeApp(config);
+</script>
+<script src="scripts/firebase-app.js"></script>
+
   <script src="app.js"></script>
 </body>
 </html>
