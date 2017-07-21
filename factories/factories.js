@@ -1,5 +1,13 @@
 var factories = angular.module('appFactories', [])
 
-.factory('', function () {
+.factory('newsFactory', function () {
+    var newsFactory = {}
+    newsFactory.News = [];
 
+    newsFactory.getNews = function () {
+
+    };
+
+
+    return newsFactory;
 });
