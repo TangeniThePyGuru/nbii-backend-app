@@ -6,10 +6,10 @@ var factories = angular.module('appFactories', [])
 
     newsFactory.getNews = function () {
 
-    };
+        };
 
-    return newsFactory;
-}
+        return newsFactory;
+    }
 
 )
 
