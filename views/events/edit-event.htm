@@ -1,0 +1,46 @@
+<div>
+
+    <h1>Edit Event</h1>
+
+    <form name="edit_event_form" class="form-horizontal" role="form">
+        <div class="form-group">
+            <div class="">
+                <input class="form-control" ng-model="event.title" placeholder="Title"/>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="">
+                <input class="form-control" ng-model="event.description" placeholder="Description"/>
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <div class="">
+                <input class="form-control" ng-model="event.date/time" placeholder="Date/Time"/>
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            <div class="">
+                <input class="form-control" ng-model="event.images" placeholder="Images"/>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="">
+                <input class="form-control" ng-model="event.category" placeholder="Category"/>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="form-group">
+                <button ng-click="editEvent()" class="btn btn-primary">Update Event</button>
+            </div>
+        </div>
+    </form>
+
+
+</div>

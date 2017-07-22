@@ -1,0 +1,38 @@
+<div>
+
+    <h1>Edit Advert</h1>
+
+    <form name="edit_advert_form" class="form-horizontal" role="form">
+        <div class="form-group">
+            <div class="">
+                <input class="form-control" ng-model="advert.advert" placeholder="Advert"/>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="">
+                <input class="form-control" ng-model="advert.validity_period" placeholder="Validity_Period"/>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <!--<div class="">-->
+            <input class="form-control"  ng-model="advert.image" placeholder="Image"/>
+            <!--</div>-->
+        </div>
+
+        <div class="form-group">
+            <!--<div class="">-->
+            <input class="form-control"  ng-model="advert.category" placeholder="Category"/>
+            <!--</div>-->
+        </div>
+
+        <div class="form-group">
+            <div class="form-group">
+                <button ng-click="editAdvert()" class="btn btn-primary">Update Advert</button>
+            </div>
+        </div>
+    </form>
+
+
+</div>

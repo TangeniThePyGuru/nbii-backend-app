@@ -1,0 +1,32 @@
+<div>
+
+    <h1>Edit Faq</h1>
+
+    <form name="edit_faq_form" class="form-horizontal" role="form">
+        <div class="form-group">
+            <div class="">
+                <input class="form-control" ng-model="faq.question" placeholder="Question"/>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="">
+                <input class="form-control" ng-model="faq.answer" placeholder="Answer"/>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <!--<div class="">-->
+            <input class="form-control"  ng-model="faq.category" placeholder="Category"/>
+            <!--</div>-->
+        </div>
+
+        <div class="form-group">
+            <div class="form-group">
+                <button ng-click="editFaq()" class="btn btn-primary">Update Faq</button>
+            </div>
+        </div>
+    </form>
+
+
+</div>

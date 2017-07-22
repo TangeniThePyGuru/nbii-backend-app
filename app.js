@@ -4,6 +4,6 @@
 var app = angular.module('app', ["ngRoute","firebase" ,"appRoutes" , "appFactories", "appControllers"])
     //app constants
     .constant('firebaseUrl',
-        'https://nbiiapp.firebaseio.com/faq/'
+        'https://nbiiapp.firebaseio.com/'
     );
 

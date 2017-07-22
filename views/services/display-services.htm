@@ -1,3 +1,23 @@
 <div>
-
+    <table class="table" >
+        <!--<caption class="lead">Adverts</caption>-->
+        <thead>
+        <tr>
+            <th>Service_Name</th>
+            <th>Category</th>
+            <th> Actions </th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="service in services">
+            <td>{{service.service_name}}</td>
+            <td>{{service.category}}</td>
+            <td><a href="#/edit/service/{{service.$id}}" class="btn btn-small btn-primary">Edit</a> <a ng-click="deleteService(service.$id)" class="btn btn-small btn-danger">Delete</a></td>
+        </tr>
+        </tbody>
+    </table>
+    <hr>
+    <p>
+        <a href="#/add-service" class="btn btn-primary" role="button">Add New Service</a>
+    </p>
 </div>
