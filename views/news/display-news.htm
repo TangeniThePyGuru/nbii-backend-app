@@ -1,9 +1,12 @@
+
 <div>
+    <h1>News</h1>
     <table class="table" >
         <!--<caption class="lead">Adverts</caption>-->
         <thead>
         <tr>
-            <th>Images</th>
+            <th>Title</th>
+            <!--<th>Images</th>-->
             <th>Date</th>
             <th>Category</th>
             <th> Actions </th>
@@ -11,7 +14,9 @@
         </thead>
         <tbody>
         <tr ng-repeat="news in news">
-            <td>{{news.images}}</td>
+            <td>{{news.title}}</td>
+            <td>{{news.description}}</td>
+            <!--<td><img src="{{news.images}}" alt="image"> </td>-->
             <td>{{news.date}}</td>
             <td>{{news.category}}</td>
             <td><a href="#/edit/news/{{news.$id}}" class="btn btn-small btn-primary">Edit</a> <a ng-click="deleteNew(news.$id)" class="btn btn-small btn-danger">Delete</a></td>

@@ -154,6 +154,8 @@ var appControllers = angular.module('appControllers', ['firebase'])
         var new_s = $firebaseArray(news);
         new_s.$add({
             images: $scope.new.images,
+            title: $scope.new.title,
+            description: $scope.new.description,
             date: $scope.new.date,
             category: $scope.new.category
         });
@@ -172,11 +174,13 @@ var appControllers = angular.module('appControllers', ['firebase'])
 
         $scope.new.$save({
             images: $scope.new.images,
+            title: $scope.new.title,
+            description: $scope.new.description,
             date: $scope.new.date,
             category: $scope.new.category
         });
 
-        $scope.edit_new_form.$setPristine();
+        $scope.edit_news_form.$setPristine();
         $scope.new = {};
         $location.path('/view-news');
     };

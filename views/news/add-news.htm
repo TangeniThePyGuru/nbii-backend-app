@@ -2,7 +2,7 @@
 
     <h1>Add News</h1>
 
-    <form name="add_new_form" class="form-horizontal" role="form">
+    <form name="add_news_form" class="form-horizontal" role="form">
 
 
         <div class="form-group">
@@ -20,6 +20,18 @@
         <div class="form-group">
             <!--<div class="">-->
             <input class="form-control"   ng-model="new.category" placeholder="Category"/>
+            <!--</div>-->
+        </div>
+
+        <div class="form-group">
+            <!--<div class="">-->
+            <input class="form-control"  type="text"  ng-model="new.title" placeholder="Title"/>
+            <!--</div>-->
+        </div>
+
+        <div class="form-group">
+            <!--<div class="">-->
+            <textarea class="form-control"   ng-model="new.description" placeholder="Description"></textarea>
             <!--</div>-->
         </div>
 
