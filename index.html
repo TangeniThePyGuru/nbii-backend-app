@@ -14,6 +14,10 @@
   <link rel="stylesheet" href="style/app.css">
 
 
+  <!--firebase file-->
+
+
+
 
 
   <!--<link rel="stylesheet" href="app.css">-->
@@ -83,18 +87,16 @@
 
       <ul class="nav nav-pills flex-column">
         <li class="nav-item">
-          <a class="nav-link" href="#">Adverts</a>
+          <a class="nav-link" href="#/add-adverts">Adverts</a>
         </li>
       </ul>
     </nav>
 
     <main class="col-sm-9 offset-sm-3 col-md-10 offset-md-2 pt-3">
-      <h1 style="margin: 15px" >Dashboard</h1>
 
-      <!--<section class="row text-center placeholders">-->
-        <!--<h2>Section title</h2>-->
+      <section style="margin: 10px" class="row text-center placeholders" ng-view>
 
-      <!--</section>-->
+      </section>
 
     </main>
   </div>
@@ -104,9 +106,7 @@
       <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
   <![endif]-->
 
-  <div ng-view>
 
-  </div>
 
   <script src="scripts/jquery-3.2.1.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.4.0/js/tether.min.js" integrity="sha384-DztdAPBWPRXSA/3eYEEUWrWCy7G5KFbe8fFjk5JAIxUYHKkDx6Qin1DkWx51bBrb" crossorigin="anonymous"></script>
@@ -115,28 +115,42 @@
   <script src="scripts/ie10-viewport-bug-workaround.js"></script>
 
 
-  <script src="angular/angular.js"></script>
-  <script src="angular/angular-route.js"></script>
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.5/angular.min.js"></script>
+  <script src="https://code.angularjs.org/1.4.4/angular-route.min.js"></script>
+  <!--<script src="angular/angular.js"></script>-->
+  <!--<script src="angular/angular-route.js"></script>-->
+
   <script src="factories/factories.js"></script>
   <script src="controllers/controllers.js"></script>
   <script src="routes/routes.js"></script>
-  <script src="app.js"></script>
 
-  <!--firebase file-->
-  <script src="scripts/firebase.js"></script>
-  <script>
-    // Initialize Firebase
-    // TODO: Replace with your project's customized code snippet
-    var config = {
-//      apiKey: "<API_KEY>",
-//      authDomain: "<PROJECT_ID>.firebaseapp.com",
-      databaseURL: "https://nbiiapp.firebaseio.com/",
-//      storageBucket: "<BUCKET>.appspot.com",
-//      messagingSenderId: "<SENDER_ID>",
-    };
-    firebase.initializeApp(config);
-  </script>
-  <script src="scripts/firebase-app.js"></script>
+
+<!-- Firebase -->
+<script src="https://cdn.firebase.com/js/client/2.2.4/firebase.js"></script>
+
+<!-- AngularFire -->
+<script src="https://cdn.firebase.com/libs/angularfire/1.1.2/angularfire.min.js"></script>
+  <!--<script src="scripts/firebase.js"></script>-->
+  <!--<script src="scripts/angularfire.min.js"></script>-->
+
+<script src="app.js"></script>
+
+
+
+
+  <!--<script>-->
+    <!--// Initialize Firebase-->
+    <!--// TODO: Replace with your project's customized code snippet-->
+    <!--var config = {-->
+<!--//      apiKey: "<API_KEY>",-->
+<!--//      authDomain: "<PROJECT_ID>.firebaseapp.com",-->
+      <!--databaseURL: "https://nbiiapp.firebaseio.com/",-->
+<!--//      storageBucket: "<BUCKET>.appspot.com",-->
+<!--//      messagingSenderId: "<SENDER_ID>",-->
+    <!--};-->
+    <!--firebase.initializeApp(config);-->
+  <!--</script>-->
+  <!--<script src="scripts/firebase-app.js"></script>-->
 
 </body>
 </html>

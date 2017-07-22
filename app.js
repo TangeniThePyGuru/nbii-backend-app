@@ -1,10 +1,9 @@
 'use strict';
 
 // Declare app level module which depends on views, and components
-var app = angular.module('app', ["ngRoute", "appRoutes" , "appFactories", "appControllers"]);
+var app = angular.module('app', ["ngRoute","firebase" ,"appRoutes" , "appFactories", "appControllers"])
+    //app constants
+    .constant('firebaseUrl',
+        'https://nbiiapp.firebaseio.com/faq/'
+    );
 
-
-// config(['$locationProvider', '$routeProvider', function($locationProvider, $routeProvider) {
-//   // $locationProvider.hashPrefix('!');
-//   // $routeProvider.otherwise({redirectTo: '/view1'});
-// }]);

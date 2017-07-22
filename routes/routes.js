@@ -1,4 +1,4 @@
-var appRoutes = angular.module('appRoutes', []).
+var appRoutes = angular.module('appRoutes', ["ngRoute"]).
 config(function($routeProvider) {
     // $locationProvider.hashPrefix('!');
     // $routeProvider.otherwise({redirectTo: '/view1'});
@@ -25,5 +25,19 @@ config(function($routeProvider) {
             templateUrl: "views/adverts/add-adverts.htm",
             controller: "advertsController"
     })
+
+        .
+        when('/view-faqs', {
+            templateUrl: "views/faqs/display-faqs.htm",
+            controller: "faqController"
+        })
+
+        .
+        when('/add-faq', {
+            templateUrl: "views/faqs/add-faq.htm",
+            controller: "faqController"
+        })
+
+
 
 });

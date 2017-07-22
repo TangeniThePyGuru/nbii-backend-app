@@ -1,0 +1,29 @@
+{
+  "faq" : {
+    "1": {
+      "question": "Totally Rad Product",
+      "answer": "C4R5U8D4",
+      "category": "blah"
+    },
+    "2" : {
+      "question" : "Coolest Gadget Ever",
+      "answer" : "C4R5GD34",
+      "category" : "blah"
+    },
+    "3" : {
+      "question" : "A Thing You Need",
+      "answer" : "OMG4201234",
+      "category" : "blah"
+    },
+    "4" : {
+      "question" : "A Thing You Need",
+      "answer" : "OMG4201234",
+      "category" : "blah"
+    },
+    "5" : {
+      "question" : "A Thing You Need",
+      "answer" : "OMG4201234",
+      "category" : "blah"
+    }
+  }
+}

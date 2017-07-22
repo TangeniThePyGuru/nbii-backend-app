@@ -1,0 +1,24 @@
+<div>
+    <table class="table" >
+        <!--<caption class="lead">Adverts</caption>-->
+        <thead>
+        <tr>
+            <th>Question</th>
+            <th>Answer</th>
+            <th>Category</th>
+            <th> Actions </th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="faq in faqs">
+            <td>{{faq.question}}</td>
+            <td>{{faq.answer}}</td>
+            <td>{{faq.category}}</td>
+            <!--<td><a href="#/edit/{{faq.$id}}" class="btn btn-small btn-primary">Edit</a> <a class="btn btn-small btn-danger">Delete</a></td>-->
+        </tr>
+        </tbody>
+    </table>
+    <p>
+        <!--<a href="#/add" class="btn btn-success" role="button">Add New Product</a>-->
+    </p>
+</div>
