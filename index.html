@@ -12,9 +12,13 @@
   <link rel="stylesheet" href="bootstrap/dist/css/bootstrap.css">
   <link href="style/dashboard.css" rel="stylesheet">
   <link rel="stylesheet" href="style/app.css">
+
+
+
+
   <!--<link rel="stylesheet" href="app.css">-->
 </head>
-<body ng-app="app">
+<body>
 
 
 
@@ -113,22 +117,26 @@
 
   <script src="angular/angular.js"></script>
   <script src="angular/angular-route.js"></script>
+  <script src="factories/factories.js"></script>
+  <script src="controllers/controllers.js"></script>
+  <script src="routes/routes.js"></script>
+  <script src="app.js"></script>
+
   <!--firebase file-->
   <script src="scripts/firebase.js"></script>
-<script>
-  // Initialize Firebase
-  // TODO: Replace with your project's customized code snippet
-  var config = {
-    apiKey: "<API_KEY>",
-    authDomain: "<PROJECT_ID>.firebaseapp.com",
-    databaseURL: "https://nbiiapp.firebaseio.com/",
-    storageBucket: "<BUCKET>.appspot.com",
-    messagingSenderId: "<SENDER_ID>",
-  };
-  firebase.initializeApp(config);
-</script>
-<script src="scripts/firebase-app.js"></script>
+  <script>
+    // Initialize Firebase
+    // TODO: Replace with your project's customized code snippet
+    var config = {
+      apiKey: "<API_KEY>",
+      authDomain: "<PROJECT_ID>.firebaseapp.com",
+      databaseURL: "https://nbiiapp.firebaseio.com/",
+      storageBucket: "<BUCKET>.appspot.com",
+      messagingSenderId: "<SENDER_ID>",
+    };
+    firebase.initializeApp(config);
+  </script>
+  <script src="scripts/firebase-app.js"></script>
 
-  <script src="app.js"></script>
 </body>
 </html>

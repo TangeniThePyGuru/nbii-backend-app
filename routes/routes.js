@@ -1,5 +1,5 @@
 var appRoutes = angular.module('appRoutes', []).
-config('appRoutes', function($locationProvider, $routeProvider) {
+config(function($routeProvider) {
     // $locationProvider.hashPrefix('!');
     // $routeProvider.otherwise({redirectTo: '/view1'});
     $routeProvider.
