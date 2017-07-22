@@ -4,13 +4,14 @@ var appControllers = angular.module('appControllers', ['firebase'])
     newsFactory.getNews()
 })
 
-.controller('faqController', function($scope, $firebaseArray, firebaseUrl){
+.controller('faqController', function($scope, $firebaseArray, firebaseUrl, $firebaseObject, $location){
     var faqs = new Firebase(firebaseUrl);
     $scope.faqs = "";
+    $scope.faq = "";
 
     $scope.getFaq = function () {
         $scope.faqs = $firebaseArray(faqs);
-    }
+    };
     
     $scope.addFaq = function () {
         var faq = $firebaseArray(faqs);
@@ -19,7 +20,22 @@ var appControllers = angular.module('appControllers', ['firebase'])
             answer: $scope.faq.answer,
             category: $scope.faq.category
         })
-    }
+    };
+    
+    $scope.deleteFaq = function (id) {
+        console.log(id);
+        var ref = new Firebase(firebaseUrl + id);
+        var faq = $firebaseObject(ref)
+        faq.$remove()
+    };
+    
+    $scope.editFaq = function () {
+        $scope.faq.$save({
+            question: $scope.faq.question,
+            answer: $scope.faq.answer,
+            category: $scope.faq.category
+        });
+    };
 
     $scope.getFaq();
 
