@@ -5,13 +5,13 @@
     <form name="add_faq_form" class="form-horizontal" role="form">
         <div class="form-group">
             <div class="">
-                <input class="form-control" id="sku" ng-model="faq.question" placeholder="Question"/>
+                <textarea class="form-control" id="sku" ng-model="faq.question" placeholder="Question"></textarea>
             </div>
         </div>
 
         <div class="form-group">
             <div class="">
-                <input class="form-control" id="description" ng-model="faq.answer" placeholder="Answer"/>
+                <textarea class="form-control" id="description" ng-model="faq.answer" placeholder="Answer"></textarea>
             </div>
         </div>
 
@@ -23,7 +23,7 @@
 
         <div class="form-group">
             <div class="form-group">
-                <button ng-click="addFaq()" class="btn btn-primary">Add</button>
+                <button ng-click="addFaq()" class="btn btn-primary">Add Faq</button>
             </div>
         </div>
     </form>

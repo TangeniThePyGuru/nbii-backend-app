@@ -16,6 +16,7 @@ var appControllers = angular.module('appControllers', ['firebase'])
     
     $scope.addFaq = function () {
         var faq = $firebaseArray(faqs);
+
         faq.$add({
             question: $scope.faq.question,
             answer: $scope.faq.answer,
@@ -26,7 +27,7 @@ var appControllers = angular.module('appControllers', ['firebase'])
     $scope.deleteFaq = function (id) {
         console.log(id);
         var ref = new Firebase(firebaseUrl + "faq/" + id);
-        var faq = $firebaseObject(ref)
+        var faq = $firebaseObject(ref);
         faq.$remove()
     };
     
@@ -139,10 +140,11 @@ var appControllers = angular.module('appControllers', ['firebase'])
     })
 
 
-.controller('newsController', function($scope, $firebaseArray, firebaseUrl, $firebaseObject, $location, $routeParams){
+.controller('newsController', function($scope, $firebaseArray, firebaseUrl, $firebaseObject, $location, $routeParams, titleFactory){
     var news = new Firebase(firebaseUrl + "news/");
     $scope.news = [];
     $scope.new = {};
+    titleFactory.title = "News";
 
     $scope.getNews = function () {
         $scope.news = $firebaseArray(news);
@@ -181,7 +183,7 @@ var appControllers = angular.module('appControllers', ['firebase'])
 
     $scope.getNews();
 })
-    .controller('eventController', function($scope, $firebaseArray, firebaseUrl, $firebaseObject, $location, $routeParams){
+    .controller('eventController', function($scope, $firebaseArray, firebaseUrl, $firebaseObject, $location, $routeParams ){
         var events = new Firebase(firebaseUrl + "event/");
         $scope.events = [];
         $scope.event = {};
