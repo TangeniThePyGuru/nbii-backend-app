@@ -198,7 +198,7 @@ var appControllers = angular.module('appControllers', ['firebase'])
             images: $scope.new.images,
             title: $scope.new.title,
             description: $scope.new.description,
-            date: $scope.new.date,
+            date: new Date().toDateString(),
             category: $scope.new.category
         });
 
@@ -223,7 +223,7 @@ var appControllers = angular.module('appControllers', ['firebase'])
             event.$add({
                 title: $scope.event.title,
                 description: $scope.event.description,
-                date: $scope.event.date,
+                date: $scope.event.date.toDateString(),
                 images: $scope.event.images,
                 category: $scope.event.category
             }).then(function () {
@@ -248,7 +248,7 @@ var appControllers = angular.module('appControllers', ['firebase'])
             $scope.event.$save({
                 title: $scope.event.title,
                 description: $scope.event.description,
-                date: $scope.event.date,
+                date: $scope.event.date.toDateString(),
                 images: $scope.event.images,
                 category: $scope.event.category
             });
