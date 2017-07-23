@@ -2,9 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="93a348a9-b5d0-449d-b109-1a6e9b997601" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/controllers/controllers.js" afterPath="$PROJECT_DIR$/controllers/controllers.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/news/add-news.htm" afterPath="$PROJECT_DIR$/views/news/add-news.htm" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/services/display-services.htm" afterPath="$PROJECT_DIR$/views/services/display-services.htm" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/views/services/edit-service.htm" afterPath="$PROJECT_DIR$/views/services/edit-service.htm" />
     </list>
     <ignored path="nbii-backend-app.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -58,8 +58,8 @@
       <file leaf-file-name="display-services.htm" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/views/services/display-services.htm">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="294">
-              <caret line="15" column="56" selection-start-line="15" selection-start-column="56" selection-end-line="15" selection-end-column="56" />
+            <state relative-caret-position="390">
+              <caret line="15" column="50" selection-start-line="15" selection-start-column="50" selection-end-line="15" selection-end-column="50" />
               <folding />
             </state>
           </provider>
@@ -108,8 +108,8 @@
       <file leaf-file-name="edit-service.htm" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/views/services/edit-service.htm">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="361">
-              <caret line="23" column="46" selection-start-line="23" selection-start-column="46" selection-end-line="23" selection-end-column="46" />
+            <state relative-caret-position="156">
+              <caret line="6" column="21" selection-start-line="6" selection-start-column="21" selection-end-line="6" selection-end-column="21" />
               <folding />
             </state>
           </provider>
@@ -118,9 +118,11 @@
       <file leaf-file-name="controllers.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/controllers/controllers.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="415">
-              <caret line="246" column="26" selection-start-line="246" selection-start-column="26" selection-end-line="246" selection-end-column="26" />
-              <folding />
+            <state relative-caret-position="-58">
+              <caret line="179" column="42" selection-start-line="179" selection-start-column="42" selection-end-line="179" selection-end-column="42" />
+              <folding>
+                <element signature="e#4621#5018#0" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -173,13 +175,13 @@
         <option value="$PROJECT_DIR$/views/faqs/edit-faq.htm" />
         <option value="$PROJECT_DIR$/views/news/edit-news.htm" />
         <option value="$PROJECT_DIR$/routes/routes.js" />
-        <option value="$PROJECT_DIR$/views/services/edit-service.htm" />
-        <option value="$PROJECT_DIR$/views/services/display-services.htm" />
         <option value="$PROJECT_DIR$/views/events/add-events.htm" />
         <option value="$PROJECT_DIR$/views/events/edit-event.htm" />
         <option value="$PROJECT_DIR$/views/events/display-events.htm" />
-        <option value="$PROJECT_DIR$/controllers/controllers.js" />
         <option value="$PROJECT_DIR$/views/news/add-news.htm" />
+        <option value="$PROJECT_DIR$/views/services/edit-service.htm" />
+        <option value="$PROJECT_DIR$/views/services/display-services.htm" />
+        <option value="$PROJECT_DIR$/controllers/controllers.js" />
       </list>
     </option>
   </component>
@@ -463,7 +465,7 @@
       <workItem from="1500680389327" duration="2707000" />
       <workItem from="1500684066458" duration="28410000" />
       <workItem from="1500717518774" duration="26462000" />
-      <workItem from="1500801116940" duration="26499000" />
+      <workItem from="1500801116940" duration="32679000" />
     </task>
     <task id="LOCAL-00001" summary="some missing files added!">
       <created>1500674919054</created>
@@ -497,7 +499,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="89776000" />
+    <option name="totallyTimeSpent" value="95956000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -577,7 +579,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="182">
           <caret line="7" column="0" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="e#4621#5018#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -627,7 +631,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="182">
           <caret line="7" column="0" selection-start-line="7" selection-start-column="0" selection-end-line="7" selection-end-column="0" />
-          <folding />
+          <folding>
+            <element signature="e#4621#5018#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -694,7 +700,9 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="63">
           <caret line="3" column="4" selection-start-line="3" selection-start-column="4" selection-end-line="3" selection-end-column="4" />
-          <folding />
+          <folding>
+            <element signature="e#4621#5018#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -924,22 +932,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/views/services/edit-service.htm">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="361">
-          <caret line="23" column="46" selection-start-line="23" selection-start-column="46" selection-end-line="23" selection-end-column="46" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/views/services/display-services.htm">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="294">
-          <caret line="15" column="56" selection-start-line="15" selection-start-column="56" selection-end-line="15" selection-end-column="56" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/views/events/add-events.htm">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="454">
@@ -972,11 +964,29 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/views/services/display-services.htm">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="390">
+          <caret line="15" column="50" selection-start-line="15" selection-start-column="50" selection-end-line="15" selection-end-column="50" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/views/services/edit-service.htm">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="156">
+          <caret line="6" column="21" selection-start-line="6" selection-start-column="21" selection-end-line="6" selection-end-column="21" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/controllers/controllers.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="415">
-          <caret line="246" column="26" selection-start-line="246" selection-start-column="26" selection-end-line="246" selection-end-column="26" />
-          <folding />
+        <state relative-caret-position="-58">
+          <caret line="179" column="42" selection-start-line="179" selection-start-column="42" selection-end-line="179" selection-end-column="42" />
+          <folding>
+            <element signature="e#4621#5018#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>

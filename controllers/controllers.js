@@ -133,7 +133,11 @@ var appControllers = angular.module('appControllers', ['firebase'])
     .controller('serviceController', function($scope,$timeout, $firebaseArray, firebaseUrl, $firebaseObject, $location, $routeParams){
         var services = new Firebase(firebaseUrl + "service/");
         $scope.services = [];
-        $scope.service = {};
+        $scope.service = {
+            service_name: '',
+            categoty: ''
+        };
+        // var id = null;
 
         $scope.getServices = function () {
             $scope.services = $firebaseArray(services);
@@ -160,44 +164,26 @@ var appControllers = angular.module('appControllers', ['firebase'])
         };
 
         $scope.editService = function () {
-            // var ref = new Firebase(firebaseUrl + "service/" + $routeParams.id);
+            var ref = new Firebase(firebaseUrl + "service/" + $routeParams.$id);
             // console.log($routeParams.id);
-            var ref = new Firebase(firebaseUrl + "service/");
+            // var ref = new Firebase(firebaseUrl + "service/");
             $scope.service = $firebaseObject(ref);
-            // var object = {
-            //     service_name: $scope.service.service_name,
-            //     category: $scope.service.category
-            // };
-            $scope.service.$loaded().then(function () {
-                ref.child($routeParams.id).set(
-                    $scope.service
-                );
+
+
+            $scope.service.$save({
+                service_name: $scope.service.service_name,
+                category: $scope.service.category,
             }).then(function () {
                 $scope.edit_service_form.$setPristine();
                 $scope.success = true;
                 $timeout(function () {
-                    $scope.success = false;
+                    $scope.success = false
                     $timeout(function () {
                         $location.path('/view-services');
                     }, 1000)
                 }, 3000);
                 $scope.service = {};
             });
-
-            // $scope.service.$save({
-            //     service_name: $scope.service.service_name,
-            //     category: $scope.service.category,
-            // }).then(function () {
-            //     $scope.edit_service_form.$setPristine();
-            //     $scope.success = true;
-            //     $timeout(function () {
-            //         $scope.success = false
-            //         $timeout(function () {
-            //             $location.path('/view-services');
-            //         }, 1000)
-            //     }, 3000);
-            //     $scope.service = {};
-            // });
 
             // $scope.edit_service_form.$setPristine();
             // $scope.service = {};
