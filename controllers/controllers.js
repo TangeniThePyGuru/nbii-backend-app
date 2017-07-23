@@ -211,7 +211,7 @@ var appControllers = angular.module('appControllers', ['firebase'])
     var news = new Firebase(firebaseUrl + "news/");
     $scope.news = [];
     $scope.new = {};
-    titleFactory.title = "News";
+    // titleFactory.title = "News";
     $scope.success = false;
 
     $scope.getNews = function () {
