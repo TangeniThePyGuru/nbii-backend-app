@@ -23,3 +23,12 @@
   content: "|";
   padding-right: 0.3em;
 }
+
+.ng-hide {
+  height: 0;
+  width: 0;
+  transition: all linear 1s;
+  background-color: transparent;
+  top:-200px;
+  left: 200px;
+}

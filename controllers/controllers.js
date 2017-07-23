@@ -1,11 +1,13 @@
 var appControllers = angular.module('appControllers', ['firebase'])
+    //global variables
+    .value('success',false)
 
-.controller('newsController', function (newsFactory) {
-    newsFactory.getNews()
-})
+    // .('newsController', function (newsFactory) {
+    //     newsFactory.getNews()
+    // })
 
-.controller('faqController', function($scope, $firebaseArray, firebaseUrl, $firebaseObject, $location, $routeParams){
-
+    .controller('faqController', function($scope,success, $timeout, $firebaseArray, firebaseUrl, $firebaseObject, $location, $routeParams){
+    $scope.success = false;
     var faqs = new Firebase(firebaseUrl + "faq/");
     $scope.faqs = [];
     $scope.faq = {};
@@ -21,7 +23,13 @@ var appControllers = angular.module('appControllers', ['firebase'])
             question: $scope.faq.question,
             answer: $scope.faq.answer,
             category: $scope.faq.category
+        }).then(function () {
+            $scope.success = true;
+            $timeout(function () {
+                $scope.success = false
+            }, 3000);
         })
+
     };
     
     $scope.deleteFaq = function (id) {
@@ -50,7 +58,7 @@ var appControllers = angular.module('appControllers', ['firebase'])
 
 })
 
-    .controller('advertController', function($scope, $firebaseArray, firebaseUrl, $firebaseObject, $location, $routeParams){
+    .controller('advertController', function($scope,$timeout, $firebaseArray, firebaseUrl, $firebaseObject, $location, $routeParams){
         var adverts = new Firebase(firebaseUrl + "advert/");
         $scope.adverts = [];
         $scope.advert = {};
@@ -66,8 +74,11 @@ var appControllers = angular.module('appControllers', ['firebase'])
                 validity_period: $scope.advert.validity_period,
                 image: $scope.advert.image,
                 category: $scope.advert.category,
-
-
+            }).then(function () {
+                $scope.success = true
+                $timeout(function () {
+                    $scope.success = false
+                }, 3000);
             })
         };
 
@@ -99,7 +110,7 @@ var appControllers = angular.module('appControllers', ['firebase'])
     })
 
 
-    .controller('serviceController', function($scope, $firebaseArray, firebaseUrl, $firebaseObject, $location, $routeParams){
+    .controller('serviceController', function($scope,$timeout, $firebaseArray, firebaseUrl, $firebaseObject, $location, $routeParams){
         var services = new Firebase(firebaseUrl + "service/");
         $scope.services = [];
         $scope.service = {};
@@ -113,7 +124,12 @@ var appControllers = angular.module('appControllers', ['firebase'])
             service.$add({
                 service_name: $scope.service.service_name,
                 category: $scope.service.category,
-            })
+            }).then(function () {
+                $scope.success = true;
+                $timeout(function () {
+                    $scope.success = false
+                }, 3000);
+            });
         };
 
         $scope.deleteService= function (id) {
@@ -140,11 +156,12 @@ var appControllers = angular.module('appControllers', ['firebase'])
     })
 
 
-.controller('newsController', function($scope, $firebaseArray, firebaseUrl, $firebaseObject, $location, $routeParams, titleFactory){
+.controller('newsController', function($scope, $firebaseArray,$timeout, firebaseUrl, $firebaseObject, $location, $routeParams, titleFactory){
     var news = new Firebase(firebaseUrl + "news/");
     $scope.news = [];
     $scope.new = {};
     titleFactory.title = "News";
+    $scope.success = false;
 
     $scope.getNews = function () {
         $scope.news = $firebaseArray(news);
@@ -158,6 +175,11 @@ var appControllers = angular.module('appControllers', ['firebase'])
             description: $scope.new.description,
             date: $scope.new.date,
             category: $scope.new.category
+        }).then(function () {
+            $scope.success = true;
+            $timeout(function () {
+                $scope.success = false
+            }, 3000);
         });
     };
 
@@ -187,11 +209,11 @@ var appControllers = angular.module('appControllers', ['firebase'])
 
     $scope.getNews();
 })
-    .controller('eventController', function($scope, $firebaseArray, firebaseUrl, $firebaseObject, $location, $routeParams ){
+    .controller('eventController', function($scope,$timeout, $firebaseArray, firebaseUrl, $firebaseObject, $location, $routeParams ){
         var events = new Firebase(firebaseUrl + "event/");
         $scope.events = [];
         $scope.event = {};
-
+        $scope.success = false;
         $scope.getEvents = function () {
             $scope.events = $firebaseArray(events);
         };
@@ -204,6 +226,11 @@ var appControllers = angular.module('appControllers', ['firebase'])
                 date: $scope.event.date,
                 images: $scope.event.images,
                 category: $scope.event.category
+            }).then(function () {
+                $scope.success = true
+                $timeout(function () {
+                    $scope.success = false
+                }, 3000);
             })
         };
 
@@ -233,4 +260,8 @@ var appControllers = angular.module('appControllers', ['firebase'])
 
         $scope.getEvents();
 
+    })
+
+    .controller('yearController', function ($scope) {
+        $scope.currentYear = new Date().getFullYear();
     });
