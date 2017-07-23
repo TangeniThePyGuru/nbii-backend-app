@@ -173,7 +173,7 @@ var appControllers = angular.module('appControllers', ['firebase'])
             images: $scope.new.images,
             title: $scope.new.title,
             description: $scope.new.description,
-            date: $scope.new.date,
+            date: new Date().toDateString(),
             category: $scope.new.category
         }).then(function () {
             $scope.success = true;
