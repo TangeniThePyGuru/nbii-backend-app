@@ -50,7 +50,7 @@ config(function($routeProvider) {
 
         .when('/edit/advert/:id', {
             templateUrl: "views/adverts/edit-advert.htm",
-            controller: "faqController"
+            controller: "advertController"
         })
 
         .when('/view-services', {

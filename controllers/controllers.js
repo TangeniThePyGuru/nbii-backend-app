@@ -47,11 +47,21 @@ var appControllers = angular.module('appControllers', ['firebase'])
             question: $scope.faq.question,
             answer: $scope.faq.answer,
             category: $scope.faq.category
+        }).then(function () {
+            $scope.edit_faq_form.$setPristine();
+            $scope.success = true;
+            $timeout(function () {
+                $scope.success = false
+                $timeout(function () {
+                    $location.path('/view-faqs');
+                }, 1000)
+            }, 3000);
+            $scope.new = {};
         });
 
-        $scope.edit_faq_form.$setPristine();
-        $scope.faq = {};
-        $location.path('/view-faqs');
+        // $scope.edit_faq_form.$setPristine();
+        // $scope.faq = {};
+        // $location.path('/view-faqs');
     };
 
     $scope.getFaq();
@@ -98,11 +108,21 @@ var appControllers = angular.module('appControllers', ['firebase'])
                 validity_period: $scope.advert.validity_period,
                 image: $scope.advert.image,
                 category: $scope.advert.category,
+            }).then(function () {
+                $scope.edit_advert_form.$setPristine();
+                $scope.success = true;
+                $timeout(function () {
+                    $scope.success = false
+                    $timeout(function () {
+                        $location.path('/view-adverts');
+                    }, 1000)
+                }, 3000);
+                $scope.advert = {};
             });
 
-            $scope.edit_advert_form.$setPristine();
-            $scope.advert = {};
-            $location.path('/view-adverts');
+            // $scope.edit_advert_form.$setPristine();
+            // $scope.advert = {};
+            // $location.path('/view-adverts');
         };
 
         $scope.getAdvert();
@@ -193,18 +213,23 @@ var appControllers = angular.module('appControllers', ['firebase'])
     $scope.editNew = function () {
         var ref = new Firebase(firebaseUrl + "news/" + $routeParams.$id);
         $scope.new = $firebaseObject(ref);
-
         $scope.new.$save({
             images: $scope.new.images,
             title: $scope.new.title,
             description: $scope.new.description,
             date: new Date().toDateString(),
             category: $scope.new.category
+        }).then(function () {
+            $scope.edit_news_form.$setPristine();
+            $scope.success = true;
+            $timeout(function () {
+                $scope.success = false
+                $timeout(function () {
+                    $location.path('/view-news');
+                }, 1000)
+            }, 3000);
+            $scope.new = {};
         });
-
-        $scope.edit_news_form.$setPristine();
-        $scope.new = {};
-        $location.path('/view-news');
     };
 
     $scope.getNews();
