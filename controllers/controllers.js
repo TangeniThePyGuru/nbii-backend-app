@@ -166,11 +166,21 @@ var appControllers = angular.module('appControllers', ['firebase'])
             $scope.service.$save({
                 service_name: $scope.service.service_name,
                 category: $scope.service.category,
+            }).then(function () {
+                $scope.edit_service_form.$setPristine();
+                $scope.success = true;
+                $timeout(function () {
+                    $scope.success = false
+                    $timeout(function () {
+                        $location.path('/view-services');
+                    }, 1000)
+                }, 3000);
+                $scope.service = {};
             });
 
-            $scope.edit_service_form.$setPristine();
-            $scope.service = {};
-            $location.path('/view-services');
+            // $scope.edit_service_form.$setPristine();
+            // $scope.service = {};
+            // $location.path('/view-services');
         };
         $scope.getServices();
     })
@@ -273,14 +283,27 @@ var appControllers = angular.module('appControllers', ['firebase'])
             $scope.event.$save({
                 title: $scope.event.title,
                 description: $scope.event.description,
-                date: $scope.event.date.toDateString(),
+                date: $scope.event.date,
                 images: $scope.event.images,
                 category: $scope.event.category
-            });
-            // clean up
-            $scope.edit_event_form.$setPristine();
-            $scope.event = {};
-            $location.path('/view-events');
+            }).then(function () {
+                $scope.edit_event_form.$setPristine();
+                $scope.success = true;
+                $timeout(function () {
+                    $scope.success = false;
+                    $timeout(function () {
+                        $location.path('/view-events');
+                    }, 1000)
+                }, 3000);
+                $scope.event = {};
+            }),function (error) {
+                console.log('error occured');
+            };
+
+            // // clean up
+            // $scope.edit_event_form.$setPristine();
+            // $scope.event = {};
+            // $location.path('/view-events');
         };
 
         $scope.getEvents();

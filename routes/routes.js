@@ -66,7 +66,7 @@ config(function($routeProvider) {
 
         .
         when('/edit/service/:id', {
-            templateUrl: "views/services/edit-services.htm",
+            templateUrl: "views/services/edit-service.htm",
             controller: "serviceController"
         })
 
