@@ -96,7 +96,7 @@ config(function($routeProvider) {
         })
 
         .when('/edit/event/:id', {
-            templateUrl: "views/events/edit-events.htm",
+            templateUrl: "views/events/edit-event.htm",
             controller: "eventController"
         })
         .otherwise({redirectTo: '/view-news'});

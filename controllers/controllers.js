@@ -242,7 +242,7 @@ var appControllers = angular.module('appControllers', ['firebase'])
         };
 
         $scope.editEvent = function () {
-            var ref = new Firebase(firebaseUrl + "event/" + $routeParams.$id);
+            var ref = new Firebase(firebaseUrl + "event/" + $routeParams.id);
             $scope.event = $firebaseObject(ref);
 
             $scope.event.$save({
