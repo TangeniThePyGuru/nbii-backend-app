@@ -160,23 +160,44 @@ var appControllers = angular.module('appControllers', ['firebase'])
         };
 
         $scope.editService = function () {
-            var ref = new Firebase(firebaseUrl + "service/" + $routeParams.$id);
+            // var ref = new Firebase(firebaseUrl + "service/" + $routeParams.id);
+            // console.log($routeParams.id);
+            var ref = new Firebase(firebaseUrl + "service/");
             $scope.service = $firebaseObject(ref);
-
-            $scope.service.$save({
-                service_name: $scope.service.service_name,
-                category: $scope.service.category,
+            // var object = {
+            //     service_name: $scope.service.service_name,
+            //     category: $scope.service.category
+            // };
+            $scope.service.$loaded().then(function () {
+                ref.child($routeParams.id).set(
+                    $scope.service
+                );
             }).then(function () {
                 $scope.edit_service_form.$setPristine();
                 $scope.success = true;
                 $timeout(function () {
-                    $scope.success = false
+                    $scope.success = false;
                     $timeout(function () {
                         $location.path('/view-services');
                     }, 1000)
                 }, 3000);
                 $scope.service = {};
             });
+
+            // $scope.service.$save({
+            //     service_name: $scope.service.service_name,
+            //     category: $scope.service.category,
+            // }).then(function () {
+            //     $scope.edit_service_form.$setPristine();
+            //     $scope.success = true;
+            //     $timeout(function () {
+            //         $scope.success = false
+            //         $timeout(function () {
+            //             $location.path('/view-services');
+            //         }, 1000)
+            //     }, 3000);
+            //     $scope.service = {};
+            // });
 
             // $scope.edit_service_form.$setPristine();
             // $scope.service = {};
@@ -200,7 +221,7 @@ var appControllers = angular.module('appControllers', ['firebase'])
     $scope.addNews = function () {
         var new_s = $firebaseArray(news);
         new_s.$add({
-            images: $scope.new.images,
+            photoUrl: $scope.new.photoUrl,
             title: $scope.new.title,
             description: $scope.new.description,
             date: new Date().toDateString(),
@@ -224,7 +245,7 @@ var appControllers = angular.module('appControllers', ['firebase'])
         var ref = new Firebase(firebaseUrl + "news/" + $routeParams.$id);
         $scope.new = $firebaseObject(ref);
         $scope.new.$save({
-            images: $scope.new.images,
+            photoUrl: $scope.new.photoUrl,
             title: $scope.new.title,
             description: $scope.new.description,
             date: new Date().toDateString(),
