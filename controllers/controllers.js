@@ -1,8 +1,7 @@
 var appControllers = angular.module('appControllers', ['firebase'])
     //global variables
     .value('success',false)
-
-    .controller('faqController', function($scope,success, $timeout,faqFactory, firebaseUrl, $firebaseArray, $firebaseObject, $location){
+    .controller('faqController', function(faqFactory, $scope,success, $timeout, firebaseUrl, $firebaseArray, $firebaseObject, $location){
         $scope.success = success;
         $scope.faqs = faqFactory.FAQS;
         $scope.faq = {};
@@ -48,67 +47,6 @@ var appControllers = angular.module('appControllers', ['firebase'])
 
         $scope.getFaq();
     })
-//     .controller('faqController', function($scope,success, $timeout, $firebaseArray, firebaseUrl, $firebaseObject, $location, $routeParams){
-//     $scope.success = false;
-//     var faqs = new Firebase(firebaseUrl + "faq/");
-//     $scope.faqs = [];
-//     $scope.faq = {};
-//
-//     $scope.getFaq = function () {
-//         $scope.faqs = $firebaseArray(faqs);
-//     };
-//
-//     $scope.addFaq = function () {
-//         var faq = $firebaseArray(faqs);
-//
-//         faq.$add({
-//             question: $scope.faq.question,
-//             answer: $scope.faq.answer,
-//             category: $scope.faq.category
-//         }).then(function () {
-//             $scope.success = true;
-//             $timeout(function () {
-//                 $scope.success = false
-//             }, 3000);
-//         })
-//
-//     };
-//
-//     $scope.deleteFaq = function (id) {
-//         console.log(id);
-//         var ref = new Firebase(firebaseUrl + "faq/" + id);
-//         var faq = $firebaseObject(ref);
-//         faq.$remove()
-//     };
-//
-//     $scope.editFaq = function () {
-//         var ref = new Firebase(firebaseUrl + "faq/" + $routeParams.$id);
-//         $scope.faq = $firebaseObject(ref);
-//
-//         $scope.faq.$save({
-//             question: $scope.faq.question,
-//             answer: $scope.faq.answer,
-//             category: $scope.faq.category
-//         }).then(function () {
-//             $scope.edit_faq_form.$setPristine();
-//             $scope.success = true;
-//             $timeout(function () {
-//                 $scope.success = false
-//                 $timeout(function () {
-//                     $location.path('/view-faqs');
-//                 }, 1000)
-//             }, 3000);
-//             $scope.new = {};
-//         });
-//
-//         // $scope.edit_faq_form.$setPristine();
-//         // $scope.faq = {};
-//         // $location.path('/view-faqs');
-//     };
-//
-//     $scope.getFaq();
-//
-// })
     .controller('advertController', function(advertFactory,$scope,$timeout, $firebaseArray, firebaseUrl, $firebaseObject, $location){
         var adverts = new Firebase(firebaseUrl + "advert/");
         $scope.adverts = advertFactory.ADVERTS;
@@ -154,23 +92,18 @@ var appControllers = angular.module('appControllers', ['firebase'])
         };
         $scope.getAdvert();
     })
-
-    .controller('serviceController', function($scope,$timeout, $firebaseArray, firebaseUrl, $firebaseObject, $location, $routeParams){
+    .controller('serviceController', function(serviceFactory ,$scope,$timeout, $firebaseArray, firebaseUrl, $firebaseObject, $location){
         var services = new Firebase(firebaseUrl + "service/");
-        $scope.services = [];
-        $scope.service = {
-            service_name: '',
-            categoty: ''
-        };
-        // var id = null;
+        $scope.services = serviceFactory.SERVICES;
+        $scope.service = {};
 
         $scope.getServices = function () {
-            $scope.services = $firebaseArray(services);
+            $scope.services = serviceFactory.get();
+            // $scope.services = $firebaseArray(services);
         };
 
         $scope.addService = function () {
-            var service = $firebaseArray(services);
-            service.$add({
+            serviceFactory.add({
                 service_name: $scope.service.service_name,
                 category: $scope.service.category,
             }).then(function () {
@@ -180,21 +113,12 @@ var appControllers = angular.module('appControllers', ['firebase'])
                 }, 3000);
             });
         };
-        $scope.deleteService= function (id) {
-            console.log(id);
-            var ref = new Firebase(firebaseUrl + "service/" + id);
-            var service = $firebaseObject(ref);
-            service.$remove()
+        $scope.deleteService = function (id) {
+            serviceFactory.delete(id);
         };
 
         $scope.editService = function () {
-            var ref = new Firebase(firebaseUrl + "service/" + $routeParams.$id);
-            // console.log($routeParams.id);
-            // var ref = new Firebase(firebaseUrl + "service/");
-            $scope.service = $firebaseObject(ref);
-
-
-            $scope.service.$save({
+            serviceFactory.update({
                 service_name: $scope.service.service_name,
                 category: $scope.service.category,
             }).then(function () {
@@ -208,29 +132,22 @@ var appControllers = angular.module('appControllers', ['firebase'])
                 }, 3000);
                 $scope.service = {};
             });
-
-            // $scope.edit_service_form.$setPristine();
-            // $scope.service = {};
-            // $location.path('/view-services');
         };
         $scope.getServices();
     })
-
-
-.controller('newsController', function($scope, $firebaseArray,$timeout, firebaseUrl, $firebaseObject, $location, $routeParams, titleFactory){
-    var news = new Firebase(firebaseUrl + "news/");
-    $scope.news = [];
+    .controller('newsController', function( newsfactory,$scope, $firebaseArray,$timeout, firebaseUrl, $firebaseObject, $location){
+    $scope.news = newsfactory.NEWS;
     $scope.new = {};
-    // titleFactory.title = "News";
     $scope.success = false;
 
     $scope.getNews = function () {
-        $scope.news = $firebaseArray(news);
+        $scope.news = newsfactory.get() ;
+        console.log($scope.news)
     };
 
     $scope.addNews = function () {
-        var new_s = $firebaseArray(news);
-        new_s.$add({
+        // var new_s = $firebaseArray(news);
+        newsfactory.add({
             photoUrl: $scope.new.photoUrl,
             title: $scope.new.title,
             description: $scope.new.description,
@@ -245,16 +162,13 @@ var appControllers = angular.module('appControllers', ['firebase'])
     };
 
     $scope.deleteNew = function (id) {
-        console.log(id);
-        var ref = new Firebase(firebaseUrl + "news/" + id);
-        var news = $firebaseObject(ref);
-        news.$remove();
+
+        newsfactory.delete(id);
     };
 
     $scope.editNew = function () {
-        var ref = new Firebase(firebaseUrl + "news/" + $routeParams.$id);
-        $scope.new = $firebaseObject(ref);
-        $scope.new.$save({
+
+        newsfactory.update({
             photoUrl: $scope.new.photoUrl,
             title: $scope.new.title,
             description: $scope.new.description,
@@ -275,43 +189,38 @@ var appControllers = angular.module('appControllers', ['firebase'])
 
     $scope.getNews();
 })
-    .controller('eventController', function($scope,$timeout, $firebaseArray, firebaseUrl, $firebaseObject, $location, $routeParams ){
-        var events = new Firebase(firebaseUrl + "event/");
-        $scope.events = [];
+    .controller('eventController', function( eventFactory,$scope,$timeout, $firebaseArray, firebaseUrl, $firebaseObject, $location, $routeParams ){
+        $scope.events = eventFactory.EVENTS;
         $scope.event = {};
         $scope.success = false;
+
         $scope.getEvents = function () {
-            $scope.events = $firebaseArray(events);
+            $scope.events = eventFactory.get();
         };
 
         $scope.addEvent = function () {
-            var event = $firebaseArray(events);
-            event.$add({
+            // var event = $firebaseArray(events);
+            eventFactory.add({
                 title: $scope.event.title,
                 description: $scope.event.description,
                 date: $scope.event.date.toDateString(),
                 images: $scope.event.images,
                 category: $scope.event.category
             }).then(function () {
-                $scope.success = true
+                $scope.success = true;
                 $timeout(function () {
-                    $scope.success = false
+                    $scope.success = false;
                 }, 3000);
-            })
+            });
         };
 
         $scope.deleteEvent= function (id) {
-            console.log(id);
-            var ref = new Firebase(firebaseUrl + "event/" + id);
-            var event = $firebaseObject(ref);
-            event.$remove();
+            eventFactory.delete(id);
         };
 
         $scope.editEvent = function () {
-            var ref = new Firebase(firebaseUrl + "event/" + $routeParams.id);
-            $scope.event = $firebaseObject(ref);
 
-            $scope.event.$save({
+            eventFactory.update({
                 title: $scope.event.title,
                 description: $scope.event.description,
                 date: $scope.event.date,
@@ -330,17 +239,11 @@ var appControllers = angular.module('appControllers', ['firebase'])
             }),function (error) {
                 console.log('error occured');
             };
-
-            // // clean up
-            // $scope.edit_event_form.$setPristine();
-            // $scope.event = {};
-            // $location.path('/view-events');
         };
 
         $scope.getEvents();
 
     })
-
-    .controller('yearController', function ($scope) {
-        $scope.currentYear = new Date().getFullYear();
+    .controller('yearController', function ($scope, yearFactory) {
+        $scope.currentYear = yearFactory.currentYear().getFullYear();
     });

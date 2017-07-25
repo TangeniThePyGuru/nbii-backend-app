@@ -14,13 +14,13 @@
         </tr>
         </thead>
         <tbody>
-        <tr ng-repeat="news in news">
-            <td>{{news.title}}</td>
-            <td>{{news.description}}</td>
-            <!--<td><img src="{{news.images}}" alt="image"> </td>-->
-            <td>{{news.date}}</td>
-            <td>{{news.category}}</td>
-            <td><a href="#/edit/news/{{news.$id}}" class="btn btn-small btn-primary">Edit</a> <a ng-click="deleteNew(news.$id)" class="btn btn-small btn-danger">Delete</a></td>
+        <tr ng-repeat="new in news">
+            <td>{{new.title}}</td>
+            <td>{{new.description}}</td>
+            <!--<td><img src="{{new.images}}" alt="image"> </td>-->
+            <td>{{new.date}}</td>
+            <td>{{new.category}}</td>
+            <td><a href="#/edit/news/{{new.$id}}" class="btn btn-small btn-primary">Edit</a> <a ng-click="deleteNew(new.$id)" class="btn btn-small btn-danger">Delete</a></td>
         </tr>
         </tbody>
     </table>
