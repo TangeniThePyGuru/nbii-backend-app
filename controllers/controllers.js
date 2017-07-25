@@ -2,84 +2,123 @@ var appControllers = angular.module('appControllers', ['firebase'])
     //global variables
     .value('success',false)
 
-    // .('newsController', function (newsFactory) {
-    //     newsFactory.getNews()
-    // })
+    .controller('faqController', function($scope,success, $timeout,faqFactory, firebaseUrl, $firebaseArray, $firebaseObject, $location){
+        $scope.success = success;
+        $scope.faqs = faqFactory.FAQS;
+        $scope.faq = {};
 
-    .controller('faqController', function($scope,success, $timeout, $firebaseArray, firebaseUrl, $firebaseObject, $location, $routeParams){
-    $scope.success = false;
-    var faqs = new Firebase(firebaseUrl + "faq/");
-    $scope.faqs = [];
-    $scope.faq = {};
-
-    $scope.getFaq = function () {
-        $scope.faqs = $firebaseArray(faqs);
-    };
-    
-    $scope.addFaq = function () {
-        var faq = $firebaseArray(faqs);
-
-        faq.$add({
-            question: $scope.faq.question,
-            answer: $scope.faq.answer,
-            category: $scope.faq.category
-        }).then(function () {
-            $scope.success = true;
-            $timeout(function () {
-                $scope.success = false
-            }, 3000);
-        })
-
-    };
-    
-    $scope.deleteFaq = function (id) {
-        console.log(id);
-        var ref = new Firebase(firebaseUrl + "faq/" + id);
-        var faq = $firebaseObject(ref);
-        faq.$remove()
-    };
-    
-    $scope.editFaq = function () {
-        var ref = new Firebase(firebaseUrl + "faq/" + $routeParams.$id);
-        $scope.faq = $firebaseObject(ref);
-
-        $scope.faq.$save({
-            question: $scope.faq.question,
-            answer: $scope.faq.answer,
-            category: $scope.faq.category
-        }).then(function () {
-            $scope.edit_faq_form.$setPristine();
-            $scope.success = true;
-            $timeout(function () {
-                $scope.success = false
+        $scope.getFaq = function () {
+            $scope.faqs = faqFactory.get();
+        };
+        $scope.addFaq = function () {
+            faqFactory.add({
+                    question: $scope.faq.question,
+                    answer: $scope.faq.answer,
+                    category: $scope.faq.category
+            }).then(function () {
+                $scope.success = true;
                 $timeout(function () {
-                    $location.path('/view-faqs');
-                }, 1000)
-            }, 3000);
-            $scope.new = {};
-        });
+                    $scope.success = false
+                }, 3000);
+            })
+        };
+        $scope.deleteFaq = function (id) {
+            faqFactory.delete(id);
+        };
+        $scope.editFaq = function () {
+            faqFactory.update({
+                question: $scope.faq.question,
+                answer: $scope.faq.answer,
+                category: $scope.faq.category
+            }).then(function () {
+                $scope.edit_faq_form.$setPristine();
+                $scope.success = true;
+                $timeout(function () {
+                    $scope.success = false;
+                    $timeout(function () {
+                        $location.path('/view-faqs');
+                    }, 1000)
+                }, 3000);
+                $scope.new = {};
+            });
+            // $scope.edit_faq_form.$setPristine();
+            // $scope.faq = {};
+            // $location.path('/view-faqs');
+        };
 
-        // $scope.edit_faq_form.$setPristine();
-        // $scope.faq = {};
-        // $location.path('/view-faqs');
-    };
-
-    $scope.getFaq();
-
-})
-
-    .controller('advertController', function($scope,$timeout, $firebaseArray, firebaseUrl, $firebaseObject, $location, $routeParams){
+        $scope.getFaq();
+    })
+//     .controller('faqController', function($scope,success, $timeout, $firebaseArray, firebaseUrl, $firebaseObject, $location, $routeParams){
+//     $scope.success = false;
+//     var faqs = new Firebase(firebaseUrl + "faq/");
+//     $scope.faqs = [];
+//     $scope.faq = {};
+//
+//     $scope.getFaq = function () {
+//         $scope.faqs = $firebaseArray(faqs);
+//     };
+//
+//     $scope.addFaq = function () {
+//         var faq = $firebaseArray(faqs);
+//
+//         faq.$add({
+//             question: $scope.faq.question,
+//             answer: $scope.faq.answer,
+//             category: $scope.faq.category
+//         }).then(function () {
+//             $scope.success = true;
+//             $timeout(function () {
+//                 $scope.success = false
+//             }, 3000);
+//         })
+//
+//     };
+//
+//     $scope.deleteFaq = function (id) {
+//         console.log(id);
+//         var ref = new Firebase(firebaseUrl + "faq/" + id);
+//         var faq = $firebaseObject(ref);
+//         faq.$remove()
+//     };
+//
+//     $scope.editFaq = function () {
+//         var ref = new Firebase(firebaseUrl + "faq/" + $routeParams.$id);
+//         $scope.faq = $firebaseObject(ref);
+//
+//         $scope.faq.$save({
+//             question: $scope.faq.question,
+//             answer: $scope.faq.answer,
+//             category: $scope.faq.category
+//         }).then(function () {
+//             $scope.edit_faq_form.$setPristine();
+//             $scope.success = true;
+//             $timeout(function () {
+//                 $scope.success = false
+//                 $timeout(function () {
+//                     $location.path('/view-faqs');
+//                 }, 1000)
+//             }, 3000);
+//             $scope.new = {};
+//         });
+//
+//         // $scope.edit_faq_form.$setPristine();
+//         // $scope.faq = {};
+//         // $location.path('/view-faqs');
+//     };
+//
+//     $scope.getFaq();
+//
+// })
+    .controller('advertController', function(advertFactory,$scope,$timeout, $firebaseArray, firebaseUrl, $firebaseObject, $location){
         var adverts = new Firebase(firebaseUrl + "advert/");
-        $scope.adverts = [];
+        $scope.adverts = advertFactory.ADVERTS;
         $scope.advert = {};
 
         $scope.getAdvert = function () {
-            $scope.adverts = $firebaseArray(adverts);
+            $scope.adverts = advertFactory.get();
         };
-
         $scope.addAdvert = function () {
-            var advert = $firebaseArray(adverts);
-            advert.$add({
+            advertFactory.add({
                 advert: $scope.advert.advert,
                 validity_period: $scope.advert.validity_period,
                 image: $scope.advert.image,
@@ -89,21 +128,14 @@ var appControllers = angular.module('appControllers', ['firebase'])
                 $timeout(function () {
                     $scope.success = false
                 }, 3000);
-            })
+            });
         };
-
-        $scope.deleteAdvert= function (id) {
+        $scope.deleteAdvert = function (id) {
             console.log(id);
-            var ref = new Firebase(firebaseUrl + "advert/" + id);
-            var advert = $firebaseObject(ref)
-            advert.$remove()
+            advertFactory.delete(id);
         };
-
         $scope.editAdvert = function () {
-            var ref = new Firebase(firebaseUrl + "advert/" + $routeParams.$id);
-            $scope.advert = $firebaseObject(ref);
-
-            $scope.advert.$save({
+            advertFactory.update({
                 advert: $scope.advert.advert,
                 validity_period: $scope.advert.validity_period,
                 image: $scope.advert.image,
@@ -112,23 +144,16 @@ var appControllers = angular.module('appControllers', ['firebase'])
                 $scope.edit_advert_form.$setPristine();
                 $scope.success = true;
                 $timeout(function () {
-                    $scope.success = false
+                    $scope.success = false;
                     $timeout(function () {
                         $location.path('/view-adverts');
                     }, 1000)
                 }, 3000);
                 $scope.advert = {};
             });
-
-            // $scope.edit_advert_form.$setPristine();
-            // $scope.advert = {};
-            // $location.path('/view-adverts');
         };
-
         $scope.getAdvert();
-
     })
-
 
     .controller('serviceController', function($scope,$timeout, $firebaseArray, firebaseUrl, $firebaseObject, $location, $routeParams){
         var services = new Firebase(firebaseUrl + "service/");
@@ -155,7 +180,6 @@ var appControllers = angular.module('appControllers', ['firebase'])
                 }, 3000);
             });
         };
-
         $scope.deleteService= function (id) {
             console.log(id);
             var ref = new Firebase(firebaseUrl + "service/" + id);
