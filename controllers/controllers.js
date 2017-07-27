@@ -204,7 +204,7 @@ var appControllers = angular.module('appControllers', ['firebase'])
                 title: $scope.event.title,
                 description: $scope.event.description,
                 date: $scope.event.date.toDateString(),
-                images: $scope.event.images,
+                images: $scope.event.photoUrl,
                 category: $scope.event.category
             }).then(function () {
                 $scope.success = true;
@@ -224,7 +224,7 @@ var appControllers = angular.module('appControllers', ['firebase'])
                 title: $scope.event.title,
                 description: $scope.event.description,
                 date: $scope.event.date,
-                images: $scope.event.images,
+                images: $scope.event.photoUrl,
                 category: $scope.event.category
             }).then(function () {
                 $scope.edit_event_form.$setPristine();
