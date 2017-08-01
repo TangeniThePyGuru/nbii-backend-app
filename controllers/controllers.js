@@ -366,10 +366,10 @@ var appControllers = angular.module('appControllers', ['firebase'])
         // $scope.getEvents();
 
     })
-    .controller('yearController', function ($scope, yearFactory) {
-        $scope.currentYear = yearFactory.currentYear().getFullYear();
+    .controller('yearController', function ( $scope, yearFactory) {
+        $scope.currentYear = yearFactory.currentYear().getFullYear()
     })
-    .run(function (faqFactory, advertFactory, serviceFactory, newsfactory, eventFactory) {
+    .run(function ($timeout,faqFactory, advertFactory, serviceFactory, newsfactory, eventFactory) {
         faqFactory.get();
         advertFactory.get();
         serviceFactory.get();
