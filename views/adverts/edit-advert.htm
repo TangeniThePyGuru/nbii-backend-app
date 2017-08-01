@@ -5,6 +5,15 @@
         <strong>Success!</strong> Advert Updated!
     </div>
     <form name="edit_advert_form" class="form-horizontal" role="form">
+
+        <div class="progress" style="margin-bottom: 5px">
+            <div class="progress-bar progress-bar-striped bg-success" aria-valuenow="0" style="width: 0%; text-align: center" id="uploader" role="progressbar"  aria-valuemin="0" aria-valuemax="100"></div>
+        </div>
+        <!--<label for="fileButton">Upload Image</label>-->
+        <div class="form-group">
+            <input type="file" class="alert-info" value="upload" id="fileButton">
+        </div>
+
         <div class="form-group">
             <div class="">
                 <input class="form-control" ng-model="advert.advert" placeholder="Advert"/>
@@ -17,11 +26,11 @@
             </div>
         </div>
 
-        <div class="form-group">
-            <!--<div class="">-->
-            <input class="form-control"  ng-model="advert.image" placeholder="Image"/>
-            <!--</div>-->
-        </div>
+        <!--<div class="form-group">-->
+            <!--&lt;!&ndash;<div class="">&ndash;&gt;-->
+            <!--<input class="form-control"  ng-model="advert.image" placeholder="Image"/>-->
+            <!--&lt;!&ndash;</div>&ndash;&gt;-->
+        <!--</div>-->
 
         <div class="form-group">
             <!--<div class="">-->
