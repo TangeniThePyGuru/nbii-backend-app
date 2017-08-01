@@ -5,33 +5,41 @@
         <strong>Success!</strong> News Updated!
     </div>
     <form name="edit_news_form" class="form-horizontal" role="form" >
-    <div class="form-group">
-        <div class="">
-            <input class="form-control"  ng-model="new.images" placeholder="Images"/>
+
+        <div class="progress" style="margin-bottom: 5px">
+            <div class="progress-bar progress-bar-striped bg-success" aria-valuenow="0" style="width: 0%; text-align: center" id="uploader" role="progressbar"  aria-valuemin="0" aria-valuemax="100"></div>
         </div>
-    </div>
-
-    <div class="form-group">
-        <input type="date" class="form-control"  ng-model="new.date" placeholder="Date"/>
-    </div>
-
-    <div class="form-group">
-        <input class="form-control"   ng-model="new.category" placeholder="Category"/>
-    </div>
-
-    <div class="form-group">
-        <input class="form-control"  type="text"  ng-model="new.title" placeholder="Title"/>
-    </div>
-
-    <div class="form-group">
-        <input class="form-control"   ng-model="new.description" placeholder="Description"/>
-    </div>
-
-    <div class="form-group">
+        <!--<label for="fileButton">Upload Image</label>-->
         <div class="form-group">
-            <button ng-click="editNew()" class="btn btn-primary">Update News</button>
+            <input type="file" class="alert-info" value="upload" id="fileButton">
         </div>
-    </div>
+        <!--<div class="form-group">-->
+        <!--<div class="">-->
+        <!--<input class="form-control"  ng-model="new.images" placeholder="Images"/>-->
+        <!--</div>-->
+        <!--</div>-->
+
+        <div class="form-group">
+            <input type="date" class="form-control"  ng-model="new.date" placeholder="Date"/>
+        </div>
+
+        <div class="form-group">
+            <input class="form-control"   ng-model="new.category" placeholder="Category"/>
+        </div>
+
+        <div class="form-group">
+            <input class="form-control"  type="text"  ng-model="new.title" placeholder="Title"/>
+        </div>
+
+        <div class="form-group">
+            <input class="form-control"   ng-model="new.description" placeholder="Description"/>
+        </div>
+
+        <div class="form-group">
+            <div class="form-group">
+                <button ng-click="editNew()" class="btn btn-primary">Update News</button>
+            </div>
+        </div>
     </form>
 
 
