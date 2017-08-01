@@ -1,5 +1,5 @@
 var appControllers = angular.module('appControllers', ['firebase'])
-    //global variables
+//global variables
     .value('success',false)
     .controller('faqController', function(faqFactory, $scope,success, $timeout, firebaseUrl, $firebaseArray, $firebaseObject, $location){
         $scope.success = success;
@@ -11,9 +11,9 @@ var appControllers = angular.module('appControllers', ['firebase'])
         };
         $scope.addFaq = function () {
             faqFactory.add({
-                    question: $scope.faq.question,
-                    answer: $scope.faq.answer,
-                    category: $scope.faq.category
+                question: $scope.faq.question,
+                answer: $scope.faq.answer,
+                category: $scope.faq.category
             }).then(function () {
                 $scope.success = true;
                 $timeout(function () {
@@ -135,60 +135,100 @@ var appControllers = angular.module('appControllers', ['firebase'])
         };
         $scope.getServices();
     })
-    .controller('newsController', function( newsfactory,$scope, $firebaseArray,$timeout, firebaseUrl, $firebaseObject, $location){
-    $scope.news = newsfactory.NEWS;
-    $scope.new = {};
-    $scope.success = false;
+    .controller('newsController', function(newsfactory,$scope, $firebaseArray,$timeout, firebaseUrl, $firebaseObject, $location){
+        $scope.news = newsfactory.NEWS;
+        $scope.new = {};
+        $scope.success = false;
+        $scope.uploadDone  = false;
 
-    $scope.getNews = function () {
-        $scope.news = newsfactory.get() ;
-        console.log($scope.news)
-    };
+        var uploader = document.getElementById('uploader');
+        var fileButton = document.getElementById('fileButton')
 
-    $scope.addNews = function () {
-        // var new_s = $firebaseArray(news);
-        newsfactory.add({
-            photoUrl: $scope.new.photoUrl,
-            title: $scope.new.title,
-            description: $scope.new.description,
-            date: new Date().toDateString(),
-            category: $scope.new.category
-        }).then(function () {
-            $scope.success = true;
-            $timeout(function () {
-                $scope.success = false
-            }, 3000);
-        });
-    };
+        try{
+            fileButton.addEventListener('change', function (e) {
+                //   get the file
+                var file = e.target.files[0];
+                //    create storage ref
+                var storageRef = firebase.storage().ref('NewsImages/'+file.name);
 
-    $scope.deleteNew = function (id) {
+                //    upload file
+                var task = storageRef.put(file);
+                //    update the progress bar
+                task.on('state_changed',
+                    function progress(snapshot) {
+                        var percentage = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+                        // uploader.value = percentage + "%" ;
+                        uploader.style.width = percentage + '%';
+                        if (percentage === 100){
+                            $scope.uploadDone = true;
+                        }
+                    },
+                    function error(err) {
+                        console.log("Error occured during upload: "+ err)
+                    },
+                    function complete() {
+                        // $scope.uploadDone = true;
+                        console.log("Upload completed successfully!");
+                        $scope.new.photoUrl = task.snapshot.downloadURL;
+                        $timeout(function () {
+                            // $scope.uploadDone = false;
+                            console.log('debug');
+                        }, 3000);
+                    }
+                );
+            });
+        } catch(error){
+            console.log(error)
+        }
 
-        newsfactory.delete(id);
-    };
+        $scope.getNews = function () {
+            $scope.news = newsfactory.get() ;
+            console.log($scope.news)
+        };
 
-    $scope.editNew = function () {
-
-        newsfactory.update({
-            photoUrl: $scope.new.photoUrl,
-            title: $scope.new.title,
-            description: $scope.new.description,
-            date: new Date().toDateString(),
-            category: $scope.new.category
-        }).then(function () {
-            $scope.edit_news_form.$setPristine();
-            $scope.success = true;
-            $timeout(function () {
-                $scope.success = false
+        $scope.addNews = function () {
+            newsfactory.add({
+                photoUrl: $scope.new.photoUrl,
+                title: $scope.new.title,
+                description: $scope.new.description,
+                date: new Date().toDateString(),
+                category: $scope.new.category
+            }).then(function () {
+                $scope.success = true;
                 $timeout(function () {
-                    $location.path('/view-news');
-                }, 1000)
-            }, 3000);
-            $scope.new = {};
-        });
-    };
+                    $scope.success = false
+                }, 3000);
+            });
+        };
 
-    $scope.getNews();
-})
+        $scope.deleteNew = function (id) {
+
+            newsfactory.delete(id);
+        };
+
+        $scope.editNew = function () {
+
+            newsfactory.update({
+                photoUrl: $scope.new.photoUrl,
+                title: $scope.new.title,
+                description: $scope.new.description,
+                date: new Date().toDateString(),
+                category: $scope.new.category
+            }).then(function () {
+                $scope.edit_news_form.$setPristine();
+                $scope.success = true;
+                $timeout(function () {
+                    $scope.success = false
+                    $timeout(function () {
+                        $location.path('/view-news');
+                    }, 1000)
+                }, 3000);
+                $scope.new = {};
+            });
+        };
+
+        $scope.getNews();
+    })
     .controller('eventController', function( eventFactory,$scope,$timeout, $firebaseArray, firebaseUrl, $firebaseObject, $location, $routeParams ){
         $scope.events = eventFactory.EVENTS;
         $scope.event = {};
