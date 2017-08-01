@@ -45,7 +45,7 @@ var appControllers = angular.module('appControllers', ['firebase'])
             // $location.path('/view-faqs');
         };
 
-        $scope.getFaq();
+        // $scope.getFaq();
     })
     .controller('advertController', function(advertFactory,$scope,$timeout, $firebaseArray, firebaseUrl, $firebaseObject, $location){
         var adverts = new Firebase(firebaseUrl + "advert/");
@@ -132,7 +132,7 @@ var appControllers = angular.module('appControllers', ['firebase'])
                 $scope.advert = {};
             });
         };
-        $scope.getAdvert();
+        // $scope.getAdvert();
     })
     .controller('serviceController', function(serviceFactory ,$scope,$timeout, $firebaseArray, firebaseUrl, $firebaseObject, $location){
         var services = new Firebase(firebaseUrl + "service/");
@@ -175,7 +175,7 @@ var appControllers = angular.module('appControllers', ['firebase'])
                 $scope.service = {};
             });
         };
-        $scope.getServices();
+        // $scope.getServices();
     })
     .controller('newsController', function(newsfactory,$scope, $firebaseArray,$timeout, firebaseUrl, $firebaseObject, $location){
         $scope.news = newsfactory.NEWS;
@@ -269,7 +269,7 @@ var appControllers = angular.module('appControllers', ['firebase'])
             });
         };
 
-        $scope.getNews();
+        // $scope.getNews();
     })
     .controller('eventController', function( eventFactory,$scope,$timeout, $firebaseArray, firebaseUrl, $firebaseObject, $location, $routeParams ){
         $scope.events = eventFactory.EVENTS;
@@ -363,7 +363,7 @@ var appControllers = angular.module('appControllers', ['firebase'])
             };
         };
 
-        $scope.getEvents();
+        // $scope.getEvents();
 
     })
     .controller('yearController', function ($scope, yearFactory) {
