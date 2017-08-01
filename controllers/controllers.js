@@ -61,7 +61,7 @@ var appControllers = angular.module('appControllers', ['firebase'])
                 //   get the file
                 var file = e.target.files[0];
                 //    create storage ref
-                var storageRef = firebase.storage().ref('AdvertImages/'+file.name);
+                var storageRef = firebase.storage().ref('AdvertsImages/'+file.name);
 
                 //    upload file
                 var task = storageRef.put(file);
@@ -90,7 +90,7 @@ var appControllers = angular.module('appControllers', ['firebase'])
                 );
             });
         } catch(error){
-            console.log(error)
+            // console.log(error)
         }
 
 
@@ -100,7 +100,7 @@ var appControllers = angular.module('appControllers', ['firebase'])
         $scope.addAdvert = function () {
             advertFactory.add({
                 advert: $scope.advert.advert,
-                validity_period: $scope.advert.validity_period,
+                validity_period: $scope.advert.validity_period.toDateString(),
                 image: $scope.advert.image,
                 category: $scope.advert.category,
             }).then(function () {
@@ -117,7 +117,7 @@ var appControllers = angular.module('appControllers', ['firebase'])
         $scope.editAdvert = function () {
             advertFactory.update({
                 advert: $scope.advert.advert,
-                validity_period: $scope.advert.validity_period,
+                validity_period: $scope.advert.validity_period.toDateString(),
                 image: $scope.advert.image,
                 category: $scope.advert.category,
             }).then(function () {
@@ -220,7 +220,7 @@ var appControllers = angular.module('appControllers', ['firebase'])
                 );
             });
         } catch(error){
-            console.log(error)
+            // console.log(error)
         }
 
         $scope.getNews = function () {
@@ -313,7 +313,7 @@ var appControllers = angular.module('appControllers', ['firebase'])
                 );
             });
         } catch(error){
-            console.log(error)
+            // console.log(error)
         }
 
         $scope.getEvents = function () {
