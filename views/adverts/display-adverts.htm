@@ -6,7 +6,7 @@
         <tr>
             <th>Advert</th>
             <th>Validity Period</th>
-            <!--<th>Image</th>-->
+            <th>Image</th>
             <th>Category</th>
             <th>Actions </th>
         </tr>
@@ -15,7 +15,7 @@
         <tr ng-repeat="advert in adverts">
             <td>{{advert.advert}}</td>
             <td>{{advert.validity_period }}</td>
-            <!--<td>{{advert.image}}</td>-->
+            <td><img width="80px" height="100" src="{{advert.image}}" alt="{{advert.advert}+ ' image'"></td>
             <td>{{advert.category}}</td>
             <td><a href="#/edit/advert/{{advert.$id}}" class="btn btn-small btn-primary">Edit</a> <a ng-click="deleteAdvert(advert.$id)" class="btn btn-small btn-danger">Delete</a></td>
         </tr>
