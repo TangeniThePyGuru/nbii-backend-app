@@ -276,6 +276,46 @@ var appControllers = angular.module('appControllers', ['firebase'])
         $scope.event = {};
         $scope.success = false;
 
+        var uploader = document.getElementById('uploader');
+        var fileButton = document.getElementById('fileButton')
+
+        try{
+            fileButton.addEventListener('change', function (e) {
+                //   get the file
+                var file = e.target.files[0];
+                //    create storage ref
+                var storageRef = firebase.storage().ref('EventsImages/'+file.name);
+
+                //    upload file
+                var task = storageRef.put(file);
+                //    update the progress bar
+                task.on('state_changed',
+                    function progress(snapshot) {
+                        var percentage = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+                        // uploader.value = percentage + "%" ;
+                        uploader.style.width = percentage + '%';
+                        if (percentage === 100){
+                            $scope.uploadDone = true;
+                        }
+                    },
+                    function error(err) {
+                        console.log("Error occured during upload: "+ err)
+                    },
+                    function complete() {
+                        // $scope.uploadDone = true;
+                        console.log("Upload completed successfully!");
+                        $scope.event.photoUrl = task.snapshot.downloadURL;
+                        $timeout(function () {
+                            // $scope.uploadDone = false;
+                            console.log('debug');
+                        }, 3000);
+                    }
+                );
+            });
+        } catch(error){
+            console.log(error)
+        }
+
         $scope.getEvents = function () {
             $scope.events = eventFactory.get();
         };
@@ -328,4 +368,11 @@ var appControllers = angular.module('appControllers', ['firebase'])
     })
     .controller('yearController', function ($scope, yearFactory) {
         $scope.currentYear = yearFactory.currentYear().getFullYear();
+    })
+    .run(function (faqFactory, advertFactory, serviceFactory, newsfactory, eventFactory) {
+        faqFactory.get();
+        advertFactory.get();
+        serviceFactory.get();
+        newsfactory.get();
+        eventFactory.get();
     });
