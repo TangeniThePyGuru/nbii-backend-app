@@ -52,6 +52,48 @@ var appControllers = angular.module('appControllers', ['firebase'])
         $scope.adverts = advertFactory.ADVERTS;
         $scope.advert = {};
 
+
+        var uploader = document.getElementById('uploader');
+        var fileButton = document.getElementById('fileButton')
+
+        try{
+            fileButton.addEventListener('change', function (e) {
+                //   get the file
+                var file = e.target.files[0];
+                //    create storage ref
+                var storageRef = firebase.storage().ref('AdvertImages/'+file.name);
+
+                //    upload file
+                var task = storageRef.put(file);
+                //    update the progress bar
+                task.on('state_changed',
+                    function progress(snapshot) {
+                        var percentage = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+                        // uploader.value = percentage + "%" ;
+                        uploader.style.width = percentage + '%';
+                        if (percentage === 100){
+                            $scope.uploadDone = true;
+                        }
+                    },
+                    function error(err) {
+                        console.log("Error occured during upload: "+ err)
+                    },
+                    function complete() {
+                        // $scope.uploadDone = true;
+                        console.log("Upload completed successfully!");
+                        $scope.advert.image = task.snapshot.downloadURL;
+                        $timeout(function () {
+                            // $scope.uploadDone = false;
+                            console.log('debug');
+                        }, 3000);
+                    }
+                );
+            });
+        } catch(error){
+            console.log(error)
+        }
+
+
         $scope.getAdvert = function () {
             $scope.adverts = advertFactory.get();
         };
