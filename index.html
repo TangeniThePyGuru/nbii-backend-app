@@ -13,12 +13,15 @@
   <link href="style/dashboard.css" rel="stylesheet">
   <link rel="stylesheet" href="style/app.css">
 
-  <!--ckeditor files-->
-  <!--<script src="scripts/ckeditor.js"></script>-->
-  <!--<script src="scripts/sample.js"></script>-->
-  <!--<link rel="stylesheet" href="style/samples.css">-->
-  <!--<link rel="stylesheet" href="style/neo.css">-->
+  <style>
+    footer{
+      display: none;
+    }
 
+    #main{
+      display: none;
+    }
+  </style>
 </head>
 <body>
 
@@ -83,8 +86,25 @@
         </li>
       </ul>
     </nav>
+    <!--Spinner-->
 
-    <main class="col-sm-9 offset-sm-3 col-md-10 offset-md-2 pt-3" style="width: inherit;">
+    <div class="sk-circle" id="spin">
+      <div class="sk-circle1 sk-child"></div>
+      <div class="sk-circle2 sk-child"></div>
+      <div class="sk-circle3 sk-child"></div>
+      <div class="sk-circle4 sk-child"></div>
+      <div class="sk-circle5 sk-child"></div>
+      <div class="sk-circle6 sk-child"></div>
+      <div class="sk-circle7 sk-child"></div>
+      <div class="sk-circle8 sk-child"></div>
+      <div class="sk-circle9 sk-child"></div>
+      <div class="sk-circle10 sk-child"></div>
+      <div class="sk-circle11 sk-child"></div>
+      <div class="sk-circle12 sk-child"></div>
+    </div>
+
+    <!--<i id="spin" class="" style="font-size:48px"></i>-->
+    <main id="main" class="col-sm-9 offset-sm-3 col-md-10 offset-md-2 pt-3" style="width: inherit;">
 
       <section style="margin: 10px" width="100%" ng-view>
 
@@ -97,8 +117,8 @@
 </div>
 
 <!--Footer Section-->
-<footer ng-controller="yearController" style="text-align: center">
-  <small >&copy; Copyright {{currentYear}}  , <strong><em>NBII</em></strong> </small>
+<footer id="footer" ng-controller="yearController" style="text-align: center">
+  <small ng-show="!l">&copy; Copyright {{currentYear}}  , <strong><em>NBII</em></strong> </small>
 </footer>
 
 <!--[if lt IE 7]>
@@ -138,12 +158,40 @@
 <script src="https://cdn.firebase.com/libs/angularfire/1.1.2/angularfire.min.js"></script>
 <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.4/angular-animate.js"></script>
 
+<!--Spinner files-->
+<!--<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/angularjs/1.2.9/angular.min.js"></script>-->
+<!--<script type="text/javascript" src="http://fgnass.github.io/spin.js/spin.min.js"></script>-->
+<!--<script type="text/javascript" src="angular-spinner.min.js"></script>-->
+<!--<script type="text/javascript" src="angular-loading-spinner.js"></script>-->
+
 <!--Custom files-->
 <script src="services/services.js"></script>
 <script src="factories/factories.js"></script>
 <script src="controllers/controllers.js"></script>
 <script src="routes/routes.js"></script>
 <script src="app.js"></script>
+
+<script>
+
+
+//  $('#spin').fadeOut('3000');
+//  $('#main').fadeIn('3000');
+
+  jQuery(document).ready(function(){
+    delay();
+  });
+
+  function delay() {
+    var secs = 3000;
+    setTimeout('initFadeIn()', secs);
+  }
+
+  function initFadeIn() {
+    $('#spin').fadeOut(500);
+    $("main").fadeIn(2600).slideDown(2690);
+  }
+
+</script>
 
 
 </body>
