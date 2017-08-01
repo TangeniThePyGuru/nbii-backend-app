@@ -160,6 +160,11 @@ var factories = angular.module('appFactories', ['firebase'])
         };
         return eventFactory;
     })
+    .factory('Auth', function ($firebaseAuth) {
+        var auth = $firebaseAuth();
+
+        return auth;
+    })
     .factory('yearFactory', function () {
         var yearFactory = {};
 
