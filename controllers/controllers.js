@@ -139,6 +139,47 @@ var appControllers = angular.module('appControllers', ['firebase'])
         $scope.services = serviceFactory.SERVICES;
         $scope.service = {};
 
+
+        var uploader = document.getElementById('uploader');
+        var fileButton = document.getElementById('fileButton')
+
+        try{
+            fileButton.addEventListener('change', function (e) {
+                //   get the file
+                var file = e.target.files[0];
+                //    create storage ref
+                var storageRef = firebase.storage().ref('ServicesImages/'+file.name);
+
+                //    upload file
+                var task = storageRef.put(file);
+                //    update the progress bar
+                task.on('state_changed',
+                    function progress(snapshot) {
+                        var percentage = (snapshot.bytesTransferred / snapshot.totalBytes) * 100;
+                        // uploader.value = percentage + "%" ;
+                        uploader.style.width = percentage + '%';
+                        if (percentage === 100){
+                            $scope.uploadDone = true;
+                        }
+                    },
+                    function error(err) {
+                        console.log("Error occured during upload: "+ err)
+                    },
+                    function complete() {
+                        // $scope.uploadDone = true;
+                        console.log("Upload completed successfully!");
+                        $scope.service.image = task.snapshot.downloadURL;
+                        $timeout(function () {
+                            // $scope.uploadDone = false;
+                            console.log('debug');
+                        }, 3000);
+                    }
+                );
+            });
+        } catch(error){
+            // console.log(error)
+        }
+
         $scope.getServices = function () {
             $scope.services = serviceFactory.get();
             // $scope.services = $firebaseArray(services);
@@ -148,6 +189,7 @@ var appControllers = angular.module('appControllers', ['firebase'])
             serviceFactory.add({
                 service_name: $scope.service.service_name,
                 category: $scope.service.category,
+                photoUrl: $scope.service.image
             }).then(function () {
                 $scope.success = true;
                 $timeout(function () {
@@ -368,6 +410,10 @@ var appControllers = angular.module('appControllers', ['firebase'])
     })
     .controller('yearController', function ( $scope, yearFactory) {
         $scope.currentYear = yearFactory.currentYear().getFullYear()
+    })
+    .controller('AuthCtrl',function (Auth,$state) {
+        var authCtrl = this;
+
     })
     .run(function ($timeout,faqFactory, advertFactory, serviceFactory, newsfactory, eventFactory) {
         faqFactory.get();
